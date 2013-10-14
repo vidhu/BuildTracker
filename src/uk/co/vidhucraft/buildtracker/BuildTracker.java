@@ -10,7 +10,7 @@ public class BuildTracker extends JavaPlugin{
 	
 	@Override
 	public void onEnable(){
-		//Initialize Database
+		//Initialize the Database
 		ds.connect();
 		ds.setup();
 		
