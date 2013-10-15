@@ -59,6 +59,7 @@ public class SqliteDataSource implements DataSource {
     			+ "ID_Player INTEGER PRIMARY KEY AUTOINCREMENT, "
     			+ "PlayerName TEXT,"
     			+ "BP NUMERIC DEFAULT 0,"
+    			+ "VOTE NUMERIC DEFAULT 0,"
     			+ "RP NUMERIC DEFAULT 0)"
 			);
         	
@@ -102,7 +103,7 @@ public class SqliteDataSource implements DataSource {
 
 	@Override
 	public double[] getPlayerRecord(String player){
-		double points[] = new double[3];
+		double points[] = new double[4];
 		
 		PreparedStatement pst = null;
         ResultSet rs = null;
@@ -114,6 +115,7 @@ public class SqliteDataSource implements DataSource {
 			while(rs.next()){
 				points[1] = rs.getDouble("BP");
 				points[2] = rs.getDouble("RP");
+				points[3] = rs.getDouble("VOTE");
 			}
 			//Indication that query was successful
 			points[0] = 1;
@@ -148,7 +150,9 @@ public class SqliteDataSource implements DataSource {
 			}
 
 			pst.executeUpdate();
-			System.out.println(sql);
+			
+			//DEBUG:check sql generated
+			//System.out.println(sql);
 			
 		}catch(Exception ex){
 			ex.printStackTrace();

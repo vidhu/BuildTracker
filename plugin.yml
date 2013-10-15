@@ -2,6 +2,8 @@ name: BuildTracker
 main: uk.co.vidhucraft.buildtracker.BuildTracker
 version: 1.0.0
 
+softdepend: [Votifier]
+
 commands:
     bt:
         description: Build Tracker Commands
