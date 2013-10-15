@@ -1,0 +1,14 @@
+name: BuildTracker
+main: uk.co.vidhucraft.buildtracker.BuildTracker
+version: 1.0.0
+
+commands:
+    bt:
+        description: Build Tracker Commands
+        usage: /bt [add|get] [playername] [bp|rp] [ammount]
+permissions:
+    bt.*:
+        description: Grants all BuildTracker permissions
+        children:
+            bt.get: true
+            bt.add: true
