@@ -4,7 +4,6 @@ import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
-import org.bukkit.plugin.java.JavaPlugin;
 
 public class BuildTrackerCommandExecuter implements CommandExecutor {
 	BuildTracker plugin;
@@ -34,11 +33,14 @@ public class BuildTrackerCommandExecuter implements CommandExecutor {
 				
 			double buildCount = points[1];
 			double rsCount = points[2];
+			double voteCount = points[3];
 			sender.sendMessage(player + " has ");
 			sender.sendMessage(ChatColor.GREEN + String.valueOf(buildCount)
 					+ " build points");
 			sender.sendMessage(ChatColor.RED + String.valueOf(rsCount)
 					+ " rs points");
+			sender.sendMessage(ChatColor.YELLOW + String.valueOf(voteCount)
+					+ " votes");
 			
 			return true;
 			
@@ -56,10 +58,12 @@ public class BuildTrackerCommandExecuter implements CommandExecutor {
 
 			// Set the record type
 			RecordType recordtype = null;
-			if (args[2].equals("rp")) {
+			if (args[2].equalsIgnoreCase("rp")) {
 				recordtype = RecordType.RP;
-			} else if (args[2].equals("bp")) {
+			} else if (args[2].equalsIgnoreCase("bp")) {
 				recordtype = RecordType.BP;
+			} else if (args[2].equalsIgnoreCase("vote")){
+				recordtype = RecordType.VOTE;
 			} else {
 				return false;
 			}
@@ -75,6 +79,7 @@ public class BuildTrackerCommandExecuter implements CommandExecutor {
 
 			// Execute commands
 			plugin.ds.modifyPlayerRecord(playername, recordtype, ammount, true);
+			
 			sender.sendMessage(ChatColor.GREEN + "Added " + ammount + recordtype + " to " + playername);
 			
 			return true;

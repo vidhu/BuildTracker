@@ -1,6 +1,5 @@
 package uk.co.vidhucraft.buildtracker.datasource;
 
-import java.sql.SQLException;
 
 import uk.co.vidhucraft.buildtracker.RecordType;
 
